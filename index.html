@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PrepMind AI - Smart Placement & Interview Coach</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- 1. HEADER SECTION -->
+  <header class="header">
+    <div class="logo-box">
+      <span class="logo-icon"></span>
+      <div>
+        <h1>PrepMind AI</h1>
+        <p class="tagline">Your Personal Placement & Mock Interview Coach</p>
+      </div>
+    </div>
+    <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+      <button type="button" id="change-api-key-btn" class="pill-btn" style="background: rgba(99, 102, 241, 0.25); border: 1px solid #6366f1; color: #fff; cursor: pointer; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;">🔑 Change API Key</button>
+      <div class="powered-badge">Powered by Google Gemini</div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- 2. SETUP & TOPIC SECTION -->
+    <section id="setup-section" class="card">
+      <h2>🚀 Start Your Mock Interview</h2>
+      <p class="subtitle">Enter your name, target skill, and choose your interview mode.</p>
+
+      <!-- Student Name -->
+      <div class="input-group">
+        <label for="student-name">Your Full Name:</label>
+        <input type="text" id="student-name" placeholder="e.g. Sri Pallav" required />
+      </div>
+
+      <!-- Target Topic -->
+      <div class="input-group">
+        <label for="topic-input">Target Topic / Skill:</label>
+        <input type="text" id="topic-input" placeholder="e.g. React Hooks, JavaScript ES6, Java OOPs, SQL" required />
+      </div>
+
+      <!-- Quick Topic Select Pills -->
+      <div class="quick-topics">
+        <span>Quick Select:</span>
+        <button type="button" class="pill-btn" onclick="selectTopic('HTML & CSS Fundamentals')">HTML & CSS</button>
+        <button type="button" class="pill-btn" onclick="selectTopic('JavaScript ES6+ & Async')">JavaScript ES6</button>
+        <button type="button" class="pill-btn" onclick="selectTopic('React Components & State')">React.js</button>
+        <button type="button" class="pill-btn" onclick="selectTopic('Java OOPs Concepts')">Java OOPs</button>
+        <button type="button" class="pill-btn" onclick="selectTopic('SQL Queries & Joins')">SQL Queries</button>
+      </div>
+
+      <!-- Number of Questions -->
+      <div class="input-group">
+        <label for="num-questions">How many questions do you want?</label>
+        <select id="num-questions">
+          <option value="3">3 Questions (Quick Practice - 5 mins)</option>
+          <option value="5" selected>5 Questions (Standard Round - 10 mins)</option>
+          <option value="10">10 Questions (Comprehensive Test - 20 mins)</option>
+        </select>
+      </div>
+
+      <!-- Mode Selector -->
+      <div class="input-group">
+        <label for="practice-mode">Select Mode:</label>
+        <select id="practice-mode">
+          <option value="mock"> Mock Interview (Test my skills with AI Scorecard)</option>
+          <option value="study">📖 Study Mode (Show me Top Questions with Model Answers)</option>
+        </select>
+      </div>
+
+      <!-- Action Button -->
+      <button id="start-btn" class="primary-btn">Generate AI Interview Questions </button>
+    </section>
+
+    <!-- LOADING INDICATOR (Hidden initially) -->
+    <div id="loading-box" class="loading-box hidden">
+      <div class="spinner"></div>
+      <p id="loading-text">Gemini AI is preparing your custom interview questions... </p>
+    </div>
+
+    <!-- 3. INTERVIEW ROOM (Hidden initially) -->
+    <section id="interview-room" class="card hidden">
+      <div class="room-header">
+        <h2 id="room-topic-title">Interview in Progress</h2>
+        <span class="badge" id="mode-badge">Fresher Level</span>
+      </div>
+
+      <form id="answers-form">
+        <div id="questions-container">
+          <!-- Dynamic Question Cards will be injected here via JavaScript -->
+        </div>
+
+        <button type="submit" id="submit-answers-btn" class="primary-btn">
+          Submit Answers for AI Evaluation 
+        </button>
+      </form>
+    </section>
+
+    <!-- 4. SCORECARD & FEEDBACK SECTION (Hidden initially) -->
+    <section id="scorecard-section" class="card hidden">
+      <div class="scorecard-header">
+        <h2> AI Performance Scorecard</h2>
+        <div id="score-badge" class="score-badge">-- / 10</div>
+      </div>
+
+      <div id="feedback-content">
+        <!-- Dynamic Score and Feedback will be injected here via JavaScript -->
+      </div>
+
+      <button id="restart-btn" class="secondary-btn">Practice Another Topic </button>
+    </section>
+
+    <!-- 5. PREVIOUS INTERVIEW HISTORY -->
+    <section class="card history-card">
+      <h3>Your Past Interview History</h3>
+      <div id="history-list">
+        <p class="empty-msg">No past interviews recorded yet on this device.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Connect JavaScript (cache-busted) -->
+  <script src="app.js?v=7.0"></script>
+</body>
+</html>
